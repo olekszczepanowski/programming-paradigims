@@ -3,7 +3,7 @@ def main(): Unit = {
   println("Test sumy: ")
   println(suma(List(1,2,2.5)))
   println(suma(List(3.5,2.25,2.5)))
-  println(suma(List(8,8,0.5,0,12)))
+  println(suma(List(8,8,0.5,0,12.7)))
 
   println()
   println("Test dla łączenia")
