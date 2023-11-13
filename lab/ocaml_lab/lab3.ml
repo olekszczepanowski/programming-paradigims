@@ -2,14 +2,21 @@ let id x = x;;
 
 let cubes x = x*x*x;;
 
-let rec fact x = 
-  if x < 1 then 1
-  else x * fact (x-1);;
+let fact x =
+  let rec factHelper x acc =
+    if x < 1 then acc
+    else factHelper (x - 1) (x * acc)
+  in
+  factHelper x 1;;
 
-let rec sum func a b = 
-  if a>b then 0
-  else func a + sum func (a+1) b;;
 
+  let sum func a b =
+    let rec sumHelper acc a b =
+      if a > b then acc
+      else sumHelper (acc + func a) (a + 1) b
+    in
+    sumHelper 0 a b;;
+  
 
 (* tests *)
 let testid1 = sum id 1 3;;
