@@ -1,7 +1,7 @@
 @main
 def main(): Unit = {
   val test1 = List(1.5, 2, -3)
-  val test2 = List(-1000.4,50.25,22.75,0,1);
+  val test2 = List(-7,12.5,20,0.5);
   val test3 = List()
   println("Task 1")
 
@@ -36,12 +36,9 @@ def main(): Unit = {
   println(sum(1, 10, fact))
   println(sum(4, 0, fact))
   println(sum(1, 1, fact))
-
-
-
-
-
 }
+
+//Task1
 def processList(list: List[Double], function: Double => Double): List[Double] = {
   list match {
     case Nil => List()
@@ -58,12 +55,23 @@ val expElem = (x: Double) => Math.exp(x) - 1
 //Task3
 
 def sum(a: Int, b: Int, function: Int => Int): Int = {
-  if (a>b) 0 else  function(a) + sum((a+1),b,function)
+//  if (a>b) 0 else  function(a) + sum((a+1),b,function)
+  def sumHelper(acc:Int, a: Int, b: Int): Int = {
+    if a>b then acc
+    else sumHelper(acc+function(a),a+1,b)
+  }
+  sumHelper(0,a,b)
 }
 
 val id = (x: Int) => x
 
-val cubes = (x: Int) => x*x*x;
+val cubes = (x: Int) => x*x*x
 
-def fact(x: Int): Int = if (x < 1) 1 else x * fact(x - 1)
+def fact(x: Int): Int = {
+  def factHelper(x:Int, acc: Int): Int = {
+    if x < 1 then acc
+    else factHelper((x-1),(x*acc))
+  }
+  factHelper(x,1)
+}
 
