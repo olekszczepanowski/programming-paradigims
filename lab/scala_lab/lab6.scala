@@ -10,18 +10,15 @@ def main(): Unit = {
   println(test1.toList)
   println(test2.toList)
   println(test3.toList)
-//   Wyrzucenie wyjatku dla zlej wartosci n
-//    val test4 = choose(lazyList1,0,3)
-//    println(test4.toList)
 
-  // Wyrzucenie wyjatku dla zlej wartosci m
-  //val test5 = choose(lazyList1, 2, -3)
-  //  println(test4.toList)
+  val test4 = choose(lazyList1,0,3)
+  val test5 = choose(lazyList1, 2, -3)
+
 }
 class WrongValue extends Exception
 def choose(list: Stream[Int], n: Int, m: Int): Stream[Int] = {
   if (n < 1)  throw new WrongValue
-  else if (m < 0) throw new WrongValue
+  else if (m < 1) throw new WrongValue
   else {
     val skippedList = skip(list, m-1)
     def chooseHelper(tmpList: Stream[Int], tmp: Int): Stream[Int] = {
