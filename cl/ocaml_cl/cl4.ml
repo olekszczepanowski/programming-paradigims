@@ -95,3 +95,14 @@ let breadthSearch (Graph succ) startNode =
   in search [] [startNode];;
 
   breadthSearch g 4;; 
+
+let depthSearch (Graph succ) startNode = 
+  let rec search result visited rest = 
+    match rest with
+    | [] -> []
+    | head::tail -> if List.mem head visited then search result visited tail
+    else head :: search result (head::visited) (succ head @ tail)
+  in
+  search [] [] [startNode];;
+
+  depthSearch g 4;;
