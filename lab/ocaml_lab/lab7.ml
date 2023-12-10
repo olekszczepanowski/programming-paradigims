@@ -60,8 +60,15 @@ let rec replicate list =
   |_ -> Koniec
 ;;
 
-let list = (Element(1, Element(2, Element (3, Koniec))));;
-replicate list;;
+let list1 = (Element(1, Element(2, Element (3, Koniec))));;
+let list2 = (Element(1, Element(2, Element (3, Element(4, Element(5, Koniec))))));;
+let list3 = (Element(2, Element(2, Element (2, Koniec))));;
+let negativeList = (Element((-1), Element((-2), Element (3, Koniec))));;
+replicate list1;;
+replicate list2;;
+replicate list3;;
+replicate negativeList;;
+replicate Koniec;;
 
 (* lazylist *)
 
@@ -86,7 +93,17 @@ let rec lreplicate list =
 ;;
 
 let ll1 = LElement(1, function () -> LElement(2, function () -> LElement(3, function () -> LKoniec)));;
-let test = lreplicate ll1;;
-
-ltake (6, (test));;
+let ll2 = LElement(2, function () -> LElement(3, function () -> LElement(4, function () -> LElement(5, function () -> LKoniec))));;
+let ll3 = LElement(2, function () -> LElement(2, function () -> LElement(2, function () -> LKoniec)));;
+let emptyll = LKoniec;;
+let negativell = LElement((-1), function () -> LElement((-2), function () -> LElement((-3), function () -> LKoniec)));;
+let test1 = lreplicate ll1;;
+let test2 = lreplicate ll2;;
+let test3 = lreplicate ll3;;
+let test4 = lreplicate emptyll;;
+let test5 = lreplicate negativell;;
+ltake (6, (test1));;
+ltake (14, (test2));;
+ltake(6,(test3));;
+ltake(1,(test4));;
 
