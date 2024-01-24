@@ -1,0 +1,6 @@
+Zad.1 lista 11:
+Analizując ten program, zauważamy, że dwie instancje klasy Count działające jako dwa wątki mają dostęp do wspólnego obiektu klasy IntCell o nazwie n. Każdy wątek, podczas swojego działania w metodzie run, pobiera wartość z IntCell, inkrementuje ją o 1, a następnie zapisuje zaktualizowaną wartość z powrotem do IntCell. To oznacza, że oba wątki próbują jednocześnie zaktualizować wartość n.
+
+Problem związany z dostępem wielowątkowym (ang. multithreading) polega na tym, że operacje te nie są atomowe, co oznacza, że inny wątek może próbować czytać lub modyfikować wartość n w trakcie, gdy inny wątek dokonuje podobnej operacji. To zjawisko nazywane jest "współbieżnością" i może prowadzić do nieprzewidywalnych wyników.
+
+Warto zauważyć, że inkrementacja (temp = n.getN(); n.setN(temp + 1);) nie jest operacją atomową, co oznacza, że może być przerwana przez inne wątki. W rezultacie, wartość n może być różna w zależności od tego, kiedy wątki są przerywane i przejmują kontrolę nad zasobami wspólnymi.
